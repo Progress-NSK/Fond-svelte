@@ -1,0 +1,61 @@
+
+:root{
+  --color-brand-blue:#1696FF;
+  --color-brand-blue-violet:#3E3FF2;
+  --color-brand-magenta:#B923CC;
+  --color-brand-red-pink:#FF1740;
+  --color-accent:#7C14FD;
+  --color-text-primary:#212B36;
+  --color-text-secondary:#637381;
+  --color-text-tertiary:#919EAB;
+  --color-text-inverse:#FFFFFF;
+  --color-bg-page:#FFFFFF;
+  --color-bg-section:#F8FAFC;
+  --color-bg-soft:#F7F2FF;
+  --color-bg-success:#F4F9EE;
+  --color-bg-dark:#0F172A;
+  --color-border-default:#DFE3E8;
+  --color-border-soft:rgba(145,158,171,0.24);
+  --color-border-dark:rgba(255,255,255,0.12);
+  --color-number-accent:#E55426;
+  --gradient-brand:linear-gradient(90deg,#1696FF 0%,#3E3FF2 42%,#B923CC 68%,#FF1740 100%);
+  --gradient-soft:linear-gradient(135deg,rgba(22,150,255,.12) 0%,rgba(185,35,204,.12) 50%,rgba(255,23,64,.12) 100%);
+  --gradient-hero:linear-gradient(135deg,#9DBB61 0%,#A5BF66 100%);
+  --shadow-card:0 12px 24px -4px rgba(145,158,171,.12),0 0 2px rgba(145,158,171,.2);
+  --shadow-hero:0 24px 64px rgba(2,2,2,.14);
+  --shadow-button:0 10px 24px rgba(124,20,253,.20);
+}
+html{scroll-behavior:smooth}
+body{background:var(--color-bg-page);color:var(--color-text-primary);overflow-x:hidden}
+
+.hero-section{isolation:isolate}
+.hero-photo-bg{position:absolute;inset:0;background-image:url("assets/hero-bg-photo.png");background-size:cover;background-position:center center;background-repeat:no-repeat;z-index:0;transform:scale(1.02)}
+.hero-photo-overlay{position:absolute;inset:0;background:linear-gradient(90deg, rgba(255,255,255,.96) 0%, rgba(255,255,255,.92) 24%, rgba(255,255,255,.78) 46%, rgba(255,255,255,.56) 68%, rgba(255,255,255,.38) 100%),linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.18) 100%);z-index:0}
+.hero-section > .mx-auto{position:relative;z-index:1}
+.mesh:before,.mesh:after{content:"";position:absolute;inset:auto;filter:blur(48px);opacity:.55;pointer-events:none;z-index:0;border-radius:999px}
+.mesh:before{width:18rem;height:18rem;background:radial-gradient(circle,var(--color-brand-blue) 0%, rgba(22,150,255,0) 70%);top:-2rem;left:-2rem;animation:floaty 12s ease-in-out infinite;opacity:.35}
+.mesh:after{width:22rem;height:22rem;background:radial-gradient(circle,var(--color-brand-magenta) 0%, rgba(185,35,204,0) 70%);right:-4rem;bottom:-6rem;animation:floaty 14s ease-in-out infinite reverse;opacity:.3}
+.grad-text{background:var(--gradient-brand);-webkit-background-clip:text;background-clip:text;color:transparent}
+.glass{background:rgba(255,255,255,.7);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.6)}
+.dark-glass{background:rgba(255,255,255,.06);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.12)}
+.panel{box-shadow:var(--shadow-card);border:1px solid var(--color-border-soft)}
+.btn-primary{box-shadow:var(--shadow-button)}
+.btn-primary:hover{transform:translateY(-2px)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+.reveal.is-visible{opacity:1;transform:translateY(0)}
+.float-chip{animation:floaty 8s ease-in-out infinite}
+.delay-2{animation-delay:1.2s}
+.delay-3{animation-delay:2.2s}
+.tilt-card{transform-style:preserve-3d;will-change:transform;transition:transform .18s ease, box-shadow .18s ease}
+.tilt-card:hover{box-shadow:0 16px 40px rgba(2,2,2,.12)}
+.hero-grid{grid-template-columns:1.08fr .92fr}
+.pill-link{border:1px solid var(--color-border-default);background:#fff}
+.pill-link:hover{border-color:var(--color-text-primary)}
+.current-nav{color:var(--color-text-primary);position:relative}
+.current-nav:after{content:"";position:absolute;left:0;right:0;bottom:-10px;height:2px;background:var(--gradient-brand);border-radius:999px}
+.hero-visual{background:linear-gradient(135deg,#ffffff 0%,#f6f2ff 55%,#eef8ff 100%);box-shadow:var(--shadow-hero)}
+.grid-auto-fit{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.stats-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+a,button{transition:all .22s cubic-bezier(.2,.8,.2,1)}
+@keyframes floaty{0%,100%{transform:translateY(0px) translateX(0px)}50%{transform:translateY(-12px) translateX(8px)}}
+@media (max-width:1023px){.hero-grid{grid-template-columns:1fr}.current-nav:after{display:none}}
