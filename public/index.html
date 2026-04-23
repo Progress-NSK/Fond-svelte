@@ -1,18 +1,478 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset='utf-8'>
-	<meta name='viewport' content='width=device-width,initial-scale=1'>
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Особенная мама — платформа помощи для мам и семей</title>
+    <meta
+      name="description"
+      content="«Особенная мама» — платформа, где семьи могут найти маршрут помощи, полезные материалы, проверенные организации и живую поддержку."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --color-brand-blue: #1696ff;
+        --color-brand-blue-violet: #3e3ff2;
+        --color-brand-magenta: #b923cc;
+        --color-brand-red-pink: #ff1740;
+        --color-accent: #7c14fd;
+        --color-text-primary: #212b36;
+        --color-text-secondary: #637381;
+        --color-text-tertiary: #919eab;
+        --color-text-inverse: #ffffff;
+        --color-bg-page: #ffffff;
+        --color-bg-section: #f8fafc;
+        --color-bg-soft: #f7f2ff;
+        --color-bg-success: #f4f9ee;
+        --color-bg-dark: #0f172a;
+        --color-border-default: #dfe3e8;
+        --color-border-soft: rgba(145, 158, 171, 0.24);
+        --color-border-dark: rgba(255, 255, 255, 0.12);
+        --color-state-success: #22c55e;
+        --color-state-warning: #ffab00;
+        --color-state-error: #ff5630;
+        --color-number-accent: #e55426;
+        --gradient-brand: linear-gradient(90deg, #1696ff 0%, #3e3ff2 42%, #b923cc 68%, #ff1740 100%);
+        --gradient-soft: linear-gradient(135deg, rgba(22, 150, 255, 0.12) 0%, rgba(185, 35, 204, 0.12) 50%, rgba(255, 23, 64, 0.12) 100%);
+        --gradient-hero: linear-gradient(135deg, #9dbb61 0%, #a5bf66 100%);
+        --shadow-card: 0 12px 24px -4px rgba(145, 158, 171, 0.12), 0 0 2px rgba(145, 158, 171, 0.2);
+        --shadow-hero: 0 24px 64px rgba(2, 2, 2, 0.14);
+        --shadow-button: 0 10px 24px rgba(124, 20, 253, 0.2);
+      }
 
-	<title>Svelte app</title>
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: 'Public Sans', system-ui, sans-serif;
+        color: var(--color-text-primary);
+        background: var(--color-bg-page);
+      }
+      .container-max { max-width: 1280px; }
+      .section-space { padding-top: 64px; padding-bottom: 64px; }
+      .card-shadow { box-shadow: var(--shadow-card); }
+      .hero-shadow { box-shadow: var(--shadow-hero); }
+      .btn-shadow { box-shadow: var(--shadow-button); }
+      .gradient-brand { background: var(--gradient-brand); }
+      .gradient-soft { background: var(--gradient-soft); }
+      .gradient-hero { background: var(--gradient-hero); }
+      .h1-main { font-size: 40px; line-height: 1.1; font-weight: 800; }
+      .h2-main { font-size: 32px; line-height: 1.2; font-weight: 800; }
+      .h3-main { font-size: 20px; line-height: 1.3; font-weight: 700; }
+      .body-l { font-size: 18px; line-height: 1.78; }
+      .body-m { font-size: 16px; line-height: 1.5; }
+      .body-s { font-size: 14px; line-height: 1.57; }
+      .caption {
+        font-size: 12px;
+        line-height: 1.5;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .focus-ring:focus-visible {
+        outline: 3px solid var(--color-brand-blue);
+        outline-offset: 2px;
+      }
+      @media (min-width: 768px) {
+        .section-space { padding-top: 96px; padding-bottom: 96px; }
+      }
+      @media (min-width: 1024px) {
+        .h1-main { font-size: 64px; line-height: 1.08; }
+        .h2-main { font-size: 48px; line-height: 1.16; }
+        .h3-main { font-size: 24px; line-height: 1.3; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="sticky top-0 z-50 border-b backdrop-blur bg-white/90" style="border-color: var(--color-border-soft)">
+      <div class="container-max mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between py-4 gap-4">
+          <a href="#hero" class="focus-ring inline-flex items-center gap-2 font-extrabold text-lg text-[var(--color-text-primary)]">
+            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full text-white gradient-brand">OM</span>
+            Особенная мама
+          </a>
+          <button
+            id="menu-toggle"
+            class="focus-ring lg:hidden min-h-[44px] min-w-[44px] rounded-xl border px-3"
+            style="border-color: var(--color-border-default)"
+            aria-expanded="false"
+            aria-controls="mobile-nav"
+            aria-label="Открыть меню"
+          >
+            ☰
+          </button>
+          <nav class="hidden lg:flex items-center gap-6" aria-label="Основная навигация">
+            <a href="#help" class="focus-ring body-m text-[var(--color-text-secondary)] hover:text-[var(--color-accent)]">Получить помощь</a>
+            <a href="#navigator" class="focus-ring body-m text-[var(--color-text-secondary)] hover:text-[var(--color-accent)]">Навигатор</a>
+            <a href="#materials" class="focus-ring body-m text-[var(--color-text-secondary)] hover:text-[var(--color-accent)]">Материалы</a>
+            <a href="#stories" class="focus-ring body-m text-[var(--color-text-secondary)] hover:text-[var(--color-accent)]">Истории</a>
+            <a href="#support" class="focus-ring body-m text-[var(--color-text-secondary)] hover:text-[var(--color-accent)]">Поддержать</a>
+          </nav>
+          <a
+            href="#support"
+            class="focus-ring hidden lg:inline-flex items-center justify-center min-h-[48px] px-6 rounded-2xl text-white font-bold btn-shadow"
+            style="background: var(--color-accent)"
+          >Поддержать проект</a>
+        </div>
+        <nav id="mobile-nav" class="lg:hidden hidden pb-4" aria-label="Мобильная навигация">
+          <div class="grid gap-2">
+            <a href="#help" class="focus-ring min-h-[44px] px-4 py-3 rounded-xl border body-m" style="border-color: var(--color-border-default)">Получить помощь</a>
+            <a href="#navigator" class="focus-ring min-h-[44px] px-4 py-3 rounded-xl border body-m" style="border-color: var(--color-border-default)">Навигатор</a>
+            <a href="#materials" class="focus-ring min-h-[44px] px-4 py-3 rounded-xl border body-m" style="border-color: var(--color-border-default)">Материалы</a>
+            <a href="#stories" class="focus-ring min-h-[44px] px-4 py-3 rounded-xl border body-m" style="border-color: var(--color-border-default)">Истории</a>
+            <a href="#support" class="focus-ring min-h-[44px] px-4 py-3 rounded-xl border body-m" style="border-color: var(--color-border-default)">Поддержать</a>
+            <a href="#support" class="focus-ring min-h-[48px] px-4 py-3 rounded-2xl text-center text-white font-bold" style="background: var(--color-accent)">Поддержать проект</a>
+          </div>
+        </nav>
+      </div>
+    </header>
 
-	<link rel='icon' type='image/png' href='/favicon.png'>
-	<link rel='stylesheet' href='/global.css'>
-	<link rel='stylesheet' href='/build/bundle.css'>
+    <main>
+      <section id="hero" class="section-space">
+        <div class="container-max mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <h1 class="h1-main mb-6">Поддержка мам и семей, которым особенно нужна опора</h1>
+            <p class="body-l text-[var(--color-text-secondary)] mb-8">«Особенная мама» — это платформа, где семьи могут найти понятный маршрут помощи, полезные материалы, проверенные организации и живую поддержку.</p>
+            <div class="flex flex-wrap gap-3 mb-8">
+              <a href="#help" class="focus-ring min-h-[52px] px-6 rounded-2xl inline-flex items-center font-bold text-white btn-shadow" style="background: var(--color-accent)">Получить помощь</a>
+              <a href="#navigator" class="focus-ring min-h-[52px] px-6 rounded-2xl inline-flex items-center font-bold border" style="border-color: var(--color-border-default)">Найти фонд</a>
+              <a href="#support" class="focus-ring min-h-[52px] px-6 rounded-2xl inline-flex items-center font-bold text-[var(--color-text-secondary)] hover:text-[var(--color-accent)]">Поддержать проект</a>
+            </div>
+            <ul class="grid sm:grid-cols-3 gap-3 text-sm">
+              <li class="rounded-2xl border px-4 py-3" style="border-color: var(--color-border-default)">Проверенная информация</li>
+              <li class="rounded-2xl border px-4 py-3" style="border-color: var(--color-border-default)">Навигатор по фондам</li>
+              <li class="rounded-2xl border px-4 py-3" style="border-color: var(--color-border-default)">Истории и опыт семей</li>
+            </ul>
+          </div>
+          <div class="rounded-[32px] p-6 md:p-10 gradient-hero hero-shadow">
+            <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1200&q=80" alt="Поддержка мам и семей на платформе" class="w-full h-[320px] md:h-[420px] object-cover rounded-[28px]" />
+          </div>
+        </div>
+      </section>
 
-	<script defer src='/build/bundle.js'></script>
-</head>
+      <section id="help" class="section-space bg-[var(--color-bg-section)]">
+        <div class="container-max mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="h2-main mb-10">С чего вы хотите начать?</h2>
+          <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+            <article class="bg-white rounded-[24px] p-6 card-shadow">
+              <h3 class="h3-main mb-3">Мне нужна помощь</h3>
+              <p class="body-m text-[var(--color-text-secondary)] mb-5">Подберите маршрут поддержки, найдите полезные материалы и организации, которые могут помочь именно в вашей ситуации.</p>
+              <a href="#platform" class="focus-ring inline-flex min-h-[44px] items-center font-bold text-[var(--color-accent)]">Перейти</a>
+            </article>
+            <article class="bg-white rounded-[24px] p-6 card-shadow">
+              <h3 class="h3-main mb-3">Хочу найти фонд</h3>
+              <p class="body-m text-[var(--color-text-secondary)] mb-5">Откройте навигатор по фондам, программам и форматам помощи для семей с особыми детьми.</p>
+              <a href="#navigator" class="focus-ring inline-flex min-h-[44px] items-center font-bold text-[var(--color-accent)]">Открыть навигатор</a>
+            </article>
+            <article class="bg-white rounded-[24px] p-6 card-shadow">
+              <h3 class="h3-main mb-3">Хочу разобраться и почитать</h3>
+              <p class="body-m text-[var(--color-text-secondary)] mb-5">Читайте статьи, инструкции, экспертные материалы и истории мам, которые уже проходят похожий путь.</p>
+              <a href="#materials" class="focus-ring inline-flex min-h-[44px] items-center font-bold text-[var(--color-accent)]">Читать материалы</a>
+            </article>
+            <article class="bg-white rounded-[24px] p-6 card-shadow">
+              <h3 class="h3-main mb-3">Хочу помочь</h3>
+              <p class="body-m text-[var(--color-text-secondary)] mb-5">Поддержите проект пожертвованием, партнёрством или личным участием, чтобы помощь становилась доступнее.</p>
+              <a href="#support" class="focus-ring inline-flex min-h-[44px] items-center font-bold text-[var(--color-accent)]">Поддержать</a>
+            </article>
+          </div>
+        </div>
+      </section>
 
-<body>
-</body>
+      <section id="platform" class="section-space">
+        <div class="container-max mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="h2-main mb-6">О платформе</h2>
+          <p class="body-l text-[var(--color-text-secondary)] max-w-4xl mb-6">Мы создаём пространство, где помощь становится понятнее и ближе. Платформа объединяет полезный контент, навигатор по фондам, истории семей и возможности поддержки, чтобы мама не оставалась один на один со своими вопросами.</p>
+          <p class="body-l text-[var(--color-text-secondary)] max-w-4xl">Здесь можно не только читать и искать информацию, но и находить следующий шаг: куда обратиться, что изучить, с кем связаться и как почувствовать, что вы не одни.</p>
+        </div>
+      </section>
+
+      <section class="section-space bg-[var(--color-bg-soft)]">
+        <div class="container-max mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="h2-main mb-3">Проекту доверяют</h2>
+          <p class="body-l text-[var(--color-text-secondary)] mb-10">За этими цифрами — реальные люди, семьи, организации и маршруты помощи.</p>
+          <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+            <article class="bg-white rounded-[24px] p-6 card-shadow">
+              <p class="text-4xl font-extrabold text-[var(--color-number-accent)] mb-2">8 880 042</p>
+              <p class="body-m text-[var(--color-text-secondary)]">волонтёров</p>
+            </article>
+            <article class="bg-white rounded-[24px] p-6 card-shadow">
+              <p class="text-4xl font-extrabold text-[var(--color-number-accent)] mb-2">1 160 311</p>
+              <p class="body-m text-[var(--color-text-secondary)]">добрых дел</p>
+            </article>
+            <article class="bg-white rounded-[24px] p-6 card-shadow">
+              <p class="text-4xl font-extrabold text-[var(--color-number-accent)] mb-2">179 045</p>
+              <p class="body-m text-[var(--color-text-secondary)]">организаций</p>
+            </article>
+            <article class="bg-white rounded-[24px] p-6 card-shadow">
+              <p class="text-4xl font-extrabold text-[var(--color-number-accent)] mb-2">173 297 470</p>
+              <p class="body-m text-[var(--color-text-secondary)]">часов помощи</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-space">
+        <div class="container-max mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="h2-main mb-10">Как работает платформа</h2>
+          <div class="grid lg:grid-cols-3 gap-6">
+            <article class="rounded-[24px] border p-6" style="border-color: var(--color-border-default)">
+              <p class="caption text-[var(--color-text-tertiary)] mb-3">Шаг 1</p>
+              <h3 class="h3-main mb-3">Понять запрос</h3>
+              <p class="body-m text-[var(--color-text-secondary)]">Вы выбираете тему, с которой хотите начать: помощь семье, поиск фонда, полезные материалы или история с похожим опытом.</p>
+            </article>
+            <article class="rounded-[24px] border p-6" style="border-color: var(--color-border-default)">
+              <p class="caption text-[var(--color-text-tertiary)] mb-3">Шаг 2</p>
+              <h3 class="h3-main mb-3">Найти подходящую помощь</h3>
+              <p class="body-m text-[var(--color-text-secondary)]">Платформа помогает быстрее сориентироваться в организациях, форматах поддержки, статьях и практических шагах.</p>
+            </article>
+            <article class="rounded-[24px] border p-6" style="border-color: var(--color-border-default)">
+              <p class="caption text-[var(--color-text-tertiary)] mb-3">Шаг 3</p>
+              <h3 class="h3-main mb-3">Сделать следующий шаг</h3>
+              <p class="body-m text-[var(--color-text-secondary)]">Вы переходите к нужной информации, фондам, историям и возможностям поддержки без ощущения растерянности.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="navigator" class="section-space bg-[var(--color-bg-section)]">
+        <div class="container-max mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <h2 class="h2-main mb-5">Навигатор по фондам и возможностям поддержки</h2>
+            <p class="body-l text-[var(--color-text-secondary)] mb-6">Если вы не знаете, с чего начать, навигатор поможет быстрее найти организации, программы помощи и подходящие форматы поддержки для вашей ситуации.</p>
+            <h3 class="h3-main mb-4">Поиск можно настроить по ключевым параметрам</h3>
+            <ul class="grid sm:grid-cols-2 gap-3 body-m text-[var(--color-text-secondary)] mb-8">
+              <li class="rounded-xl bg-white p-3">По диагнозу</li>
+              <li class="rounded-xl bg-white p-3">По региону</li>
+              <li class="rounded-xl bg-white p-3">По типу помощи</li>
+              <li class="rounded-xl bg-white p-3">По возрасту ребёнка</li>
+              <li class="rounded-xl bg-white p-3 sm:col-span-2">По формату поддержки</li>
+            </ul>
+            <div class="flex flex-wrap gap-3">
+              <a href="#" class="focus-ring inline-flex items-center min-h-[52px] px-6 rounded-2xl text-white font-bold" style="background: var(--color-accent)">Открыть навигатор</a>
+              <a href="#" class="focus-ring inline-flex items-center min-h-[52px] px-6 rounded-2xl border font-bold" style="border-color: var(--color-border-default)">Смотреть все фонды</a>
+            </div>
+          </div>
+          <div class="rounded-[32px] p-8 gradient-soft">
+            <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1100&q=80" alt="Навигатор по фондам и поддержке" class="w-full h-[360px] object-cover rounded-[24px]" />
+          </div>
+        </div>
+      </section>
+
+      <section id="materials" class="section-space">
+        <div class="container-max mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="h2-main mb-3">Полезные материалы</h2>
+          <p class="body-l text-[var(--color-text-secondary)] mb-10">Статьи, инструкции и экспертные материалы, которые помогают не только понять ситуацию, но и перейти к действию.</p>
+          <div class="grid lg:grid-cols-2 gap-6 mb-6">
+            <article class="rounded-[28px] p-8 bg-[var(--color-bg-soft)]">
+              <p class="caption text-[var(--color-accent)] mb-3">Инструкция</p>
+              <h3 class="h3-main mb-4">Что делать после постановки диагноза: первые шаги для семьи</h3>
+              <p class="body-m text-[var(--color-text-secondary)] mb-6">Короткий и понятный материал о том, как снизить тревогу, определить приоритеты и выстроить первые шаги после важного диагноза.</p>
+              <a href="#" class="focus-ring inline-flex min-h-[44px] items-center font-bold text-[var(--color-accent)]">Читать материал</a>
+            </article>
+            <div class="grid gap-6">
+              <article class="rounded-[24px] border p-6" style="border-color: var(--color-border-default)">
+                <p class="caption text-[var(--color-text-tertiary)] mb-2">Психология мамы</p>
+                <h3 class="h3-main mb-3">Как справляться с выгоранием и не оставаться одной</h3>
+                <p class="body-m text-[var(--color-text-secondary)]">Поддерживающий материал о ресурсе, чувстве вины и праве просить о помощи.</p>
+              </article>
+              <article class="rounded-[24px] border p-6" style="border-color: var(--color-border-default)">
+                <p class="caption text-[var(--color-text-tertiary)] mb-2">Подборка</p>
+                <h3 class="h3-main mb-3">Фонды и программы, которые помогают семьям</h3>
+                <p class="body-m text-[var(--color-text-secondary)]">Обзор организаций и направлений поддержки с удобными переходами к следующим шагам.</p>
+              </article>
+              <article class="rounded-[24px] border p-6" style="border-color: var(--color-border-default)">
+                <p class="caption text-[var(--color-text-tertiary)] mb-2">Образование и адаптация</p>
+                <h3 class="h3-main mb-3">Как подготовить ребёнка и семью к новому этапу</h3>
+                <p class="body-m text-[var(--color-text-secondary)]">Практические рекомендации по адаптации, обучению и взаимодействию с системой поддержки.</p>
+              </article>
+            </div>
+          </div>
+          <a href="#" class="focus-ring inline-flex min-h-[48px] px-6 rounded-2xl border font-bold items-center" style="border-color: var(--color-border-default)">Все материалы</a>
+        </div>
+      </section>
+
+      <section id="stories" class="section-space bg-[var(--color-bg-section)]">
+        <div class="container-max mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="h2-main mb-3">Истории мам</h2>
+          <p class="body-l text-[var(--color-text-secondary)] mb-10">Личный опыт, который помогает почувствовать опору, увидеть возможные пути и понять, что вы не одни.</p>
+          <div class="grid lg:grid-cols-2 gap-6 mb-6">
+            <article class="rounded-[28px] p-8 bg-white card-shadow">
+              <h3 class="h3-main mb-4">Как одна семья нашла путь к помощи и перестала бояться следующего шага</h3>
+              <p class="body-m text-[var(--color-text-secondary)] mb-6">История о том, как поддержка, информация и встреча с правильными людьми меняют ощущение безысходности на ощущение маршрута.</p>
+              <a href="#" class="focus-ring inline-flex min-h-[44px] items-center font-bold text-[var(--color-accent)]">Читать историю</a>
+            </article>
+            <div class="grid gap-4">
+              <article class="rounded-[24px] border p-6 bg-white" style="border-color: var(--color-border-default)">
+                <h3 class="h3-main">Путь к диагнозу: как пережить первые месяцы неопределённости</h3>
+              </article>
+              <article class="rounded-[24px] border p-6 bg-white" style="border-color: var(--color-border-default)">
+                <h3 class="h3-main">Поиск помощи: как мама нашла специалистов и поддержку</h3>
+              </article>
+              <article class="rounded-[24px] border p-6 bg-white" style="border-color: var(--color-border-default)">
+                <h3 class="h3-main">Принятие и жизнь семьи: как становится легче шаг за шагом</h3>
+              </article>
+            </div>
+          </div>
+          <a href="#" class="focus-ring inline-flex min-h-[48px] px-6 rounded-2xl border font-bold items-center" style="border-color: var(--color-border-default)">Все истории</a>
+        </div>
+      </section>
+
+      <section class="section-space">
+        <div class="container-max mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="h2-main mb-10">Почему семьи выбирают нас</h2>
+          <div class="grid md:grid-cols-2 gap-6">
+            <article class="rounded-[24px] p-6 bg-[var(--color-bg-success)]">
+              <h3 class="h3-main mb-3">Понятный маршрут</h3>
+              <p class="body-m text-[var(--color-text-secondary)]">Мы не перегружаем человека лишним, а помогаем перейти к следующему шагу.</p>
+            </article>
+            <article class="rounded-[24px] p-6 bg-[var(--color-bg-success)]">
+              <h3 class="h3-main mb-3">Проверенная информация</h3>
+              <p class="body-m text-[var(--color-text-secondary)]">На платформе собраны полезные материалы и направления помощи, которые действительно нужны семьям.</p>
+            </article>
+            <article class="rounded-[24px] p-6 bg-[var(--color-bg-success)]">
+              <h3 class="h3-main mb-3">Живой опыт</h3>
+              <p class="body-m text-[var(--color-text-secondary)]">Истории мам и семей дают не только информацию, но и ощущение опоры.</p>
+            </article>
+            <article class="rounded-[24px] p-6 bg-[var(--color-bg-success)]">
+              <h3 class="h3-main mb-3">Единая экосистема помощи</h3>
+              <p class="body-m text-[var(--color-text-secondary)]">Фонды, материалы, истории и поддержка связаны между собой и помогают двигаться дальше.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="support" class="section-space bg-[var(--color-bg-soft)]">
+        <div class="container-max mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="h2-main mb-5">Поддержите проект, чтобы помощь находили быстрее</h2>
+          <p class="body-l text-[var(--color-text-secondary)] max-w-4xl mb-6">Ваше участие помогает развивать навигатор, выпускать полезные материалы, собирать проверенную информацию и делать поддержку доступнее для семей, которым она особенно нужна.</p>
+          <h3 class="h3-main mb-6">Вы можете помочь в удобном формате</h3>
+          <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
+            <article class="bg-white rounded-[24px] p-6 card-shadow"><h4 class="h3-main mb-2">Разовое пожертвование</h4><p class="body-m text-[var(--color-text-secondary)]">Поддержка здесь и сейчас</p></article>
+            <article class="bg-white rounded-[24px] p-6 card-shadow"><h4 class="h3-main mb-2">Регулярная помощь</h4><p class="body-m text-[var(--color-text-secondary)]">Стабильный вклад в развитие платформы</p></article>
+            <article class="bg-white rounded-[24px] p-6 card-shadow"><h4 class="h3-main mb-2">Партнёрство</h4><p class="body-m text-[var(--color-text-secondary)]">Совместные проекты и системная поддержка</p></article>
+            <article class="bg-white rounded-[24px] p-6 card-shadow"><h4 class="h3-main mb-2">Участие</h4><p class="body-m text-[var(--color-text-secondary)]">Волонтёрство, экспертиза, информационная помощь</p></article>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <a href="#" class="focus-ring inline-flex min-h-[52px] items-center px-6 rounded-2xl text-white font-bold" style="background: var(--color-accent)">Сделать пожертвование</a>
+            <a href="#" class="focus-ring inline-flex min-h-[52px] items-center px-6 rounded-2xl border font-bold" style="border-color: var(--color-border-default)">Стать партнёром</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-space" style="background: var(--color-bg-dark)">
+        <div class="container-max mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="h2-main text-white mb-10">Что говорят семьи и партнёры</h2>
+          <div class="grid lg:grid-cols-3 gap-6">
+            <article class="rounded-[24px] p-6 border bg-white/5" style="border-color: var(--color-border-dark)">
+              <p class="body-m text-white mb-4">«Когда ты не понимаешь, с чего начать, особенно важно, чтобы рядом была понятная и живая платформа. Здесь я почувствовала, что помощь можно не только искать, но и находить».</p>
+              <p class="font-bold text-white">Александра</p>
+            </article>
+            <article class="rounded-[24px] p-6 border bg-white/5" style="border-color: var(--color-border-dark)">
+              <p class="body-m text-white mb-4">«Для меня было важно не просто читать материалы, а видеть, куда идти дальше. Именно это делает проект действительно полезным».</p>
+              <p class="font-bold text-white">Елена</p>
+            </article>
+            <article class="rounded-[24px] p-6 border bg-white/5" style="border-color: var(--color-border-dark)">
+              <p class="body-m text-white mb-4">«У проекта сильная роль: он объединяет информацию, маршруты помощи и живой человеческий опыт в одну систему».</p>
+              <p class="font-bold text-white">Партнёр проекта</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-space bg-[var(--color-bg-section)]">
+        <div class="container-max mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="h2-main mb-3">Люди, которые создают этот проект</h2>
+          <p class="body-l text-[var(--color-text-secondary)] mb-10">За платформой стоит команда, которая помогает делать поддержку понятнее, ближе и доступнее.</p>
+          <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
+            <article class="bg-white rounded-[24px] p-5 card-shadow"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Алексей Орлов — Руководитель проекта" class="w-full h-48 object-cover rounded-2xl mb-4" /><h3 class="h3-main mb-2">Алексей Орлов</h3><p class="body-m text-[var(--color-text-secondary)]">Руководитель проекта</p></article>
+            <article class="bg-white rounded-[24px] p-5 card-shadow"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80" alt="Александра Кирющенко — Редакция и контент" class="w-full h-48 object-cover rounded-2xl mb-4" /><h3 class="h3-main mb-2">Александра Кирющенко</h3><p class="body-m text-[var(--color-text-secondary)]">Редакция и контент</p></article>
+            <article class="bg-white rounded-[24px] p-5 card-shadow"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80" alt="Илья Новиков — Координатор помощи" class="w-full h-48 object-cover rounded-2xl mb-4" /><h3 class="h3-main mb-2">Илья Новиков</h3><p class="body-m text-[var(--color-text-secondary)]">Координатор помощи</p></article>
+            <article class="bg-white rounded-[24px] p-5 card-shadow"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80" alt="Надежда Зайцева — Волонтёрское направление" class="w-full h-48 object-cover rounded-2xl mb-4" /><h3 class="h3-main mb-2">Надежда Зайцева</h3><p class="body-m text-[var(--color-text-secondary)]">Волонтёрское направление</p></article>
+          </div>
+          <a href="#" class="focus-ring inline-flex min-h-[48px] items-center px-6 rounded-2xl border font-bold" style="border-color: var(--color-border-default)">О проекте</a>
+        </div>
+      </section>
+
+      <section class="section-space">
+        <div class="container-max mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="rounded-[32px] p-8 md:p-12 gradient-brand text-white">
+            <h2 class="h2-main mb-5">Выберите, с чего начать</h2>
+            <p class="body-l mb-8">Найдите помощь, откройте навигатор, прочитайте материалы или поддержите проект — сделайте следующий шаг прямо сейчас.</p>
+            <div class="flex flex-wrap gap-3">
+              <a href="#help" class="focus-ring inline-flex min-h-[52px] px-6 rounded-2xl bg-white text-[var(--color-text-primary)] font-bold items-center">Получить помощь</a>
+              <a href="#navigator" class="focus-ring inline-flex min-h-[52px] px-6 rounded-2xl border border-white/60 text-white font-bold items-center">Найти фонд</a>
+              <a href="#support" class="focus-ring inline-flex min-h-[52px] px-6 rounded-2xl border border-white/60 text-white font-bold items-center">Поддержать проект</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="section-space bg-[var(--color-bg-dark)] text-white">
+      <div class="container-max mx-auto px-4 sm:px-6 lg:px-8 grid sm:grid-cols-2 lg:grid-cols-5 gap-8">
+        <div>
+          <h2 class="h3-main mb-4">О проекте</h2>
+          <ul class="space-y-2 body-m text-white/80">
+            <li><a href="#" class="focus-ring hover:text-white">О платформе</a></li>
+            <li><a href="#" class="focus-ring hover:text-white">Команда</a></li>
+            <li><a href="#" class="focus-ring hover:text-white">Партнёры</a></li>
+            <li><a href="#" class="focus-ring hover:text-white">Контакты</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="h3-main mb-4">Помощь</h2>
+          <ul class="space-y-2 body-m text-white/80">
+            <li><a href="#" class="focus-ring hover:text-white">Получить помощь</a></li>
+            <li><a href="#" class="focus-ring hover:text-white">Навигатор по фондам</a></li>
+            <li><a href="#" class="focus-ring hover:text-white">Психологическая поддержка</a></li>
+            <li><a href="#" class="focus-ring hover:text-white">Реабилитация</a></li>
+            <li><a href="#" class="focus-ring hover:text-white">Образование и адаптация</a></li>
+            <li><a href="#" class="focus-ring hover:text-white">Юридическая помощь</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="h3-main mb-4">Материалы</h2>
+          <ul class="space-y-2 body-m text-white/80">
+            <li><a href="#" class="focus-ring hover:text-white">Полезные материалы</a></li>
+            <li><a href="#" class="focus-ring hover:text-white">Истории мам</a></li>
+            <li><a href="#" class="focus-ring hover:text-white">Инструкции</a></li>
+            <li><a href="#" class="focus-ring hover:text-white">Подборки</a></li>
+            <li><a href="#" class="focus-ring hover:text-white">Экспертные статьи</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="h3-main mb-4">Поддержка проекта</h2>
+          <ul class="space-y-2 body-m text-white/80">
+            <li><a href="#" class="focus-ring hover:text-white">Пожертвование</a></li>
+            <li><a href="#" class="focus-ring hover:text-white">Регулярная помощь</a></li>
+            <li><a href="#" class="focus-ring hover:text-white">Партнёрство</a></li>
+            <li><a href="#" class="focus-ring hover:text-white">Волонтёрство</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="h3-main mb-4">Документы</h2>
+          <ul class="space-y-2 body-m text-white/80">
+            <li><a href="#" class="focus-ring hover:text-white">Политика конфиденциальности</a></li>
+            <li><a href="#" class="focus-ring hover:text-white">Пользовательское соглашение</a></li>
+            <li><a href="#" class="focus-ring hover:text-white">Отчёты</a></li>
+            <li><a href="#" class="focus-ring hover:text-white">Реквизиты</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileNav = document.getElementById('mobile-nav');
+      menuToggle?.addEventListener('click', () => {
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', String(!expanded));
+        mobileNav.classList.toggle('hidden');
+      });
+    </script>
+  </body>
 </html>
