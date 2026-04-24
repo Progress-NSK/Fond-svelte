@@ -1,24 +1,36 @@
 ![Svelte Logo](https://st.timeweb.com/cloud-static/apps-logo/svelte.svg)
 
-# Svelte
+# Svelte Starter (готов к запуску)
 
-Пример приложения [Svelte](https://svelte.dev/), которое можно развернуть в **Timeweb Cloud Apps** без настройки.
+Подготовленный репозиторий для старта Svelte-приложения на Rollup.
 
-:tada: [Демо](https://timeweb-cloud-app-example-svelte-b1bc.twc1.net)
-
-:rocket: [Создать свой Apps](https://timeweb.cloud/my/apps/create)
-
-:books: [Документация Timeweb Cloud Apps](https://timeweb.cloud/docs/apps)
-
-## <a name="dev"></a>Локальный запуск проекта
+## Запуск локально
 
 ```bash
-# установка зависимостей
 npm install
-
-# запуск в дев режиме с отслеживанием изменений
-npm run start
-
-# сборка для продакшн с минификацией
-npm run build
+npm run dev
 ```
+
+После запуска приложение доступно на `http://localhost:5000`.
+
+## Сборка production
+
+```bash
+npm run build
+npm run start
+```
+
+`npm run build` собирает файлы в `public/build`,
+`npm run start` поднимает локальный сервер для проверки статики.
+
+## Структура
+
+- `src/` — исходники приложения (Svelte-компоненты и точка входа)
+- `public/` — статические файлы и готовый build
+- `rollup.config.js` — конфигурация сборки
+
+## Что уже готово
+
+- Базовая структура проекта и точка входа.
+- Скрипты для разработки, сборки и локального предпросмотра.
+- Стартовый UI-экран с подсказками по следующим шагам.
