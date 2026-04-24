@@ -205,7 +205,7 @@
             <div class="relative flex items-center justify-center lg:justify-end">
               <div class="hero-image-mask w-full overflow-hidden rounded-[28px] bg-white shadow-soft md:rounded-[32px] lg:max-w-[760px] xl:max-w-[820px]">
                 <img
-                  src="https://www.figma.com/api/mcp/asset/8bbb9320-bc8b-4dba-a97e-06d11e149688"
+                  src="/images/hero-mom-child.svg"
                   alt="Мама с ребёнком"
                   class="h-[280px] w-full object-cover object-[34%_center] xs:h-[320px] md:h-[420px] lg:h-[560px] xl:h-[640px]"
                 />
@@ -214,9 +214,9 @@
               <div class="absolute bottom-3 left-3 w-[160px] rounded-3xl border border-line/80 bg-white/92 p-3 backdrop-blur-md shadow-soft xs:w-[180px] xs:p-4 md:bottom-5 md:left-5 md:w-[220px] lg:bottom-6 lg:left-[-12px] lg:w-[240px] xl:bottom-8 xl:left-[-24px]">
                 <div class="flex items-center gap-3">
                   <div class="flex -space-x-2">
-                    <img src="https://www.figma.com/api/mcp/asset/9ea092e4-6b0d-4d68-9e03-1e03912568f9" alt="" class="h-8 w-8 rounded-full border border-white object-cover" />
-                    <img src="https://www.figma.com/api/mcp/asset/2cc002a6-4604-4edd-b806-a95e3ac8ac7c" alt="" class="h-8 w-8 rounded-full border border-white object-cover" />
-                    <img src="https://www.figma.com/api/mcp/asset/c3998db3-5a73-4b32-b4ff-3c1bd4667901" alt="" class="h-8 w-8 rounded-full border border-white object-cover" />
+                    <img src="/images/avatar-1.svg" alt="" class="h-8 w-8 rounded-full border border-white object-cover" />
+                    <img src="/images/avatar-2.svg" alt="" class="h-8 w-8 rounded-full border border-white object-cover" />
+                    <img src="/images/avatar-3.svg" alt="" class="h-8 w-8 rounded-full border border-white object-cover" />
                   </div>
                   <div class="text-[11px] font-bold text-text xs:text-xs">+2.5k историй</div>
                 </div>
@@ -460,7 +460,7 @@
         <div class="mt-8 grid gap-4 lg:grid-cols-12 lg:gap-6">
           <article class="relative overflow-hidden rounded-5xl lg:col-span-8">
             <img
-              src="https://www.figma.com/api/mcp/asset/55c02276-861b-4b92-b6df-9af41ef16ef9"
+              src="/images/material-main.svg"
               alt="Юридическая помощь"
               class="h-[260px] w-full object-cover xs:h-[300px] md:h-[360px] lg:h-[520px]"
             />
@@ -481,7 +481,7 @@
           <div id="stories" class="grid gap-4 md:grid-cols-2 lg:col-span-4 lg:grid-cols-1 lg:gap-6">
             <article class="grid grid-cols-3 gap-3 rounded-4xl bg-surface p-3.5 md:p-4">
               <div class="overflow-hidden rounded-3xl">
-                <img src="https://www.figma.com/api/mcp/asset/a3d05b76-3674-461a-abb6-fd685537c846" alt="" class="h-[96px] w-full object-cover md:h-[108px]" />
+                <img src="/images/story-1.svg" alt="" class="h-[96px] w-full object-cover md:h-[108px]" />
               </div>
               <div class="col-span-2">
                 <div class="text-[10px] font-bold uppercase tracking-[0.08em] text-orange md:text-xs">Психология мамы</div>
@@ -492,7 +492,7 @@
 
             <article class="grid grid-cols-3 gap-3 rounded-4xl bg-surface p-3.5 md:p-4">
               <div class="overflow-hidden rounded-3xl">
-                <img src="https://www.figma.com/api/mcp/asset/cc9951c2-7c22-4d55-b134-746f4cf4f7d4" alt="" class="h-[96px] w-full object-cover md:h-[108px]" />
+                <img src="/images/story-2.svg" alt="" class="h-[96px] w-full object-cover md:h-[108px]" />
               </div>
               <div class="col-span-2">
                 <div class="text-[10px] font-bold uppercase tracking-[0.08em] text-olive md:text-xs">Реабилитация</div>
@@ -541,7 +541,7 @@
               Проект снял огромную нагрузку с наших координаторов. Теперь к нам приходят семьи с уже готовым, правильно оформленным пакетом документов.
             </p>
             <footer class="mt-5 flex items-center gap-3">
-              <img src="https://www.figma.com/api/mcp/asset/f3b301f1-7163-4a06-aa1e-cf2f3554304b" alt="" class="h-10 w-10 rounded-full object-cover" />
+              <img src="/images/testimonial-partner.svg" alt="" class="h-10 w-10 rounded-full object-cover" />
               <div>
                 <div class="text-sm font-bold">Евгений Смирнов</div>
                 <div class="text-xs text-white/55">Представитель НКО</div>
@@ -617,25 +617,25 @@
 
         <div class="mt-8 grid grid-cols-2 gap-x-4 gap-y-6 text-center md:grid-cols-4 md:gap-6 lg:mt-10 lg:px-8 lg:gap-8">
           <article>
-            <img src="https://www.figma.com/api/mcp/asset/f95ab1ad-35b2-401c-aebc-7a93c2873270" alt="Анна Иванова" class="mx-auto h-20 w-20 rounded-full object-cover grayscale lg:h-24 lg:w-24" />
+            <img src="/images/team-anna.svg" alt="Анна Иванова" class="mx-auto h-20 w-20 rounded-full object-cover grayscale lg:h-24 lg:w-24" />
             <div class="mt-3 text-sm font-bold lg:text-base">Анна Иванова</div>
             <div class="text-xs text-muted lg:text-sm">Руководитель проекта</div>
           </article>
 
           <article>
-            <img src="https://www.figma.com/api/mcp/asset/acd15d28-39ba-4504-b073-daf4acf6b01b" alt="Михаил Петров" class="mx-auto h-20 w-20 rounded-full object-cover grayscale lg:h-24 lg:w-24" />
+            <img src="/images/team-mikhail.svg" alt="Михаил Петров" class="mx-auto h-20 w-20 rounded-full object-cover grayscale lg:h-24 lg:w-24" />
             <div class="mt-3 text-sm font-bold lg:text-base">Михаил Петров</div>
             <div class="text-xs text-muted lg:text-sm">Главный юрист</div>
           </article>
 
           <article>
-            <img src="https://www.figma.com/api/mcp/asset/c3c11bfa-3cfd-4e81-bb5f-82dfff8d2b01" alt="Елена Смирнова" class="mx-auto h-20 w-20 rounded-full object-cover grayscale lg:h-24 lg:w-24" />
+            <img src="/images/team-elena.svg" alt="Елена Смирнова" class="mx-auto h-20 w-20 rounded-full object-cover grayscale lg:h-24 lg:w-24" />
             <div class="mt-3 text-sm font-bold lg:text-base">Елена Смирнова</div>
             <div class="text-xs text-muted lg:text-sm">Шеф-редактор историй</div>
           </article>
 
           <article>
-            <img src="https://www.figma.com/api/mcp/asset/fc605462-b66f-4c09-8ca1-3680bf7be4d0" alt="Ольга Светлова" class="mx-auto h-20 w-20 rounded-full object-cover grayscale lg:h-24 lg:w-24" />
+            <img src="/images/team-olga.svg" alt="Ольга Светлова" class="mx-auto h-20 w-20 rounded-full object-cover grayscale lg:h-24 lg:w-24" />
             <div class="mt-3 text-sm font-bold lg:text-base">Ольга Светлова</div>
             <div class="text-xs text-muted lg:text-sm">Координатор фондов</div>
           </article>
